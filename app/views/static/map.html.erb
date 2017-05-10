@@ -61,7 +61,7 @@
         var infowindow = new google.maps.InfoWindow;
 
         google.maps.event.addListener(map, 'click', function(event) {
-            clickOnMap(event.latLng.lat(), event.latLng.lng());
+            clickOnMap(geocoder, event.latLng);
         })
 
         document.getElementById('submit').addEventListener('click', function() {
@@ -69,8 +69,18 @@
         });
       }
 
-      function clickOnMap(latitude, longitude) {
-        window.alert("LATITUDE: " + latitude + ". LONGITUDE: " + longitude)
+      function clickOnMap(geocoder, latlng) {
+        geocoder.geocode({'location': latlng}, function(results, status) {
+          if (status === 'OK') {
+            if (results[1]) {
+              window.alert(results[1].formatted_address);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
       }
 
       function geocodeLatLng(geocoder, map, infowindow) {
