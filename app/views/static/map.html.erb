@@ -1,4 +1,4 @@
 <div id="map"></div>
 
 <%= render partial: "static/table" %>
-<%= link_to "Delete table", static_delete_addresses_path, method: :post %>
+<%= link_to "Delete table", static_delete_addresses_path, remote: true, method: :post %>

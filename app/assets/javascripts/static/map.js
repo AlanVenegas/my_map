@@ -30,7 +30,7 @@ function clickOnMap(geocoder, latlng) {
             address: results[1].formatted_address
           },
           function(data, status){
-              window.alert("Data: " + data + "\nStatus: " + status);
+              // window.alert("Data: " + data + "\nStatus: " + status);
           });
       } else {
         window.alert('No results found');
