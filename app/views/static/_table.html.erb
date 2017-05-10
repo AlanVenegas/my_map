@@ -1,0 +1,16 @@
+<div id="table">
+  <table>
+    <tr>
+      <th>Address</th>
+      <th>Latitude</th>
+      <th>Longitude</th>
+    </tr> 
+    <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.address %></td>
+        <td><%= address.latitude %></td>
+        <td><%= address.longitude %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
