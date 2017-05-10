@@ -28,10 +28,8 @@ function clickOnMap(geocoder, latlng) {
             latitude: latlng.lat(),
             longitude: latlng.lng(),
             address: results[1].formatted_address
-          },
-          function(data, status){
-              // window.alert("Data: " + data + "\nStatus: " + status);
-          });
+          }
+        );
       } else {
         window.alert('No results found');
       }
