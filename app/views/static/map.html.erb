@@ -46,11 +46,7 @@
     </style>
   </head>
   <body>
-<!--     <div id="floating-panel">
-      <input id="latlng" type="text" value="40.714224,-73.961452">
-      <input id="submit" type="button" value="Reverse Geocode">
-    </div>
- -->    <div id="map"></div>
+    <div id="map"></div>
     <script>
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
@@ -63,17 +59,19 @@
         google.maps.event.addListener(map, 'click', function(event) {
             clickOnMap(geocoder, event.latLng);
         })
-
-        document.getElementById('submit').addEventListener('click', function() {
-          geocodeLatLng(geocoder, map, infowindow);
-        });
       }
 
       function clickOnMap(geocoder, latlng) {
         geocoder.geocode({'location': latlng}, function(results, status) {
           if (status === 'OK') {
             if (results[1]) {
-              window.alert(results[1].formatted_address);
+              $.post("/static/save_address",
+                {
+                  latitude: latlng.lat(),
+                  longitude: latlng.lng(),
+                  address: results[1].formatted_address
+                }
+              )
             } else {
               window.alert('No results found');
             }
